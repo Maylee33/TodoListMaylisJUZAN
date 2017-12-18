@@ -42,9 +42,7 @@
 
 
 </article>
-<a class="bttn_return" href="{{ path('liste_index') }}"><button type="button" class="btn btn-info">Back to the list</button></a>
-<br>
-<hr>
+
 
 <div class="Formulaire">
 	<h2>	Poster une tâche 	</h2>
@@ -57,9 +55,12 @@
 
 		<p class="width">{{ form_row(form.content) }}</p>
 		<p class="margin">{{ form_row(form.status) }}</p>
-	    <input class="login" type="submit" value="Create" />
+	    <input class="btn btn-success" type="submit" value="Create" />
 
     {{ form_end(form) }}
 </div>
-
+<p class="form-margin"></p>
+<a class="bttn_return" href="{{ path('liste_index') }}"><button type="button" class="btn btn-info">Back to the list</button></a>
+<br>
+<hr>
 {% endblock %}

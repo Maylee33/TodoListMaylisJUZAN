@@ -1,4 +1,4 @@
-
+{% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -9,15 +9,15 @@
 
 
 {{ form_start(form) }}
-   {{ form_row(form.content) }}
-   {{ form_widget(form.status) }}
+   {{ form_row(form.content) }}<p class="form-margin"></p>
+   {{ form_widget(form.status) }}<p class="form-margin"></p>
    <input class="login" type="submit" value="Éditer" />
 
 {{ form_end(form) }}
 
 </div></div>
-
-<a class="buttn_new" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+<p class="form-margin"></p>
+<a href="{{ path('liste_index') }}" class="btn btn-info">Back to the list</a>
 
 
 

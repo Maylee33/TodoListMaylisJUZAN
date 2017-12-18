@@ -2,29 +2,27 @@
 
 {% block body %}
 
+
+
 		{% for liste in listes %}
 
-            <a class="link-article" href="{{ path('liste_show', { 'id': liste.id }) }}">
-				<hr class="separate">
-					<a class="buttn_edit" href="{{ path('liste_edit', { 'id': liste.id }) }}" class="btn btn-info btn-xs">Editer</a>
+		<h2 class="title_list"><a href="{{ path('liste_show', { 'id': liste.id }) }}"> {{liste.title}}</a></h2>
 
-					<div class="buttn_bug"></div>
+		<a class="button" href="{{ path('liste_edit', { 'id': liste.id }) }}" ><button type="button" class="btn btn-info">Éditer </button></a>
+		<a class="button" href="{{ path('liste_show', { 'id': liste.id }) }}"><button type="button" class="btn btn-success">View</button></a>
 
-
-
-				<main class="block">
-					<h2 class="blog-title">	{{ liste.title }}</h2>
-					<a class="buttn_view" href="{{ path('liste_show', { 'id': liste.id }) }}">View</a>
-
-
-				</main>
-
-			</a>
+		<p class="margin-boucle"></p>
+		<hr>
 		{% endfor %}
+		<p class="form-margin-btn"></p>
 
+
+
+
+	<h2>Créer une nouvelle ToDolist</h2>
 		{{ form_start(form) }}
-			{{ form_widget(form) }}
-			<input class="login" type="submit" value="Create" />
+			{{ form_widget(form) }}<p class="form-margin"></p>
+			<input class="btn btn-info" type="submit" value="Create" />
 
 
 

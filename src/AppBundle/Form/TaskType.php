@@ -15,12 +15,12 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('content', null, [
-                'label' => false,
+                'label' => false, 'attr' => array('placeholder' => 'Entrez votre tâche')
             ])
             ->add('status', ChoiceType::class, array(
                 'choices'  => array(
-                    'Done' => 'done',
-                    'Undone' => 'undone',
+                    'Fait' => 'done',
+                    'À faire' => 'undone',
     ))
 );
     }

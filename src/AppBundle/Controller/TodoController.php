@@ -228,8 +228,8 @@ class TodoController extends Controller
         ])
         ->add('status', ChoiceType::class, array(
             'choices'  => array(
-                'Done' => 'done',
-                'Undone' => 'undone',)))
+                'Fait' => 'done',
+                'À faire' => 'undone',)))
         ->getForm();
 
             // Si la requête est en POST

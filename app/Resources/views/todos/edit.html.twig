@@ -5,16 +5,16 @@
     <h1 class="form-title">Liste edit</h1>
 	<div class="form-text">
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input class="login" type="submit" value="Edit" />
+        {{ form_widget(edit_form) }}<p class="form-margin"></p>
+        <input class="btn btn-info" type="submit" value="Edit" /><p class="form-margin"></p>
     {{ form_end(edit_form) }}
 	{{ form_start(delete_form) }}
-	    <input type="submit" value="Delete" class="delete" onclick="return confirm('Supprimer ?')">
+	    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Supprimer ?')">
 	{{ form_end(delete_form) }}
 </div>
 </div>
-
-<a class="buttn_new" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+<p class="form-margin"></p>
+<a class="btn btn-success" href="{{ path('liste_index') }}">Back to the list</a>
 
 
 {% endblock %}
