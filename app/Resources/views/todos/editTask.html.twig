@@ -1,0 +1,24 @@
+
+
+{% block body %}
+
+
+<div class="form-user-edit">
+	<h1 class="form-title">Edition d'une tâche</h1>
+	<div class="form-text">
+
+
+{{ form_start(form) }}
+   {{ form_row(form.content) }}
+   {{ form_widget(form.status) }}
+   <input class="login" type="submit" value="Éditer" />
+
+{{ form_end(form) }}
+
+</div></div>
+
+<a class="buttn_new" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+
+
+
+{% endblock %}

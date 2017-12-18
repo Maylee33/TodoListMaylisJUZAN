@@ -19,8 +19,8 @@ class TaskType extends AbstractType
             ])
             ->add('status', ChoiceType::class, array(
                 'choices'  => array(
-                    'Done' => true,
-                    'Undone' => false,
+                    'Done' => 'done',
+                    'Undone' => 'undone',
     ))
 );
     }

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -80,7 +81,7 @@ class TodoController extends Controller
             return $this->redirectToRoute('liste_show', array('id' => $liste->getId()));
         }
 
-        return $this->render('todos/create.html.twig', array(
+        return $this->render('todos/show.html.twig', array(
             'liste' => $liste,
             'form' => $form->createView(),
         ));
@@ -140,7 +141,7 @@ class TodoController extends Controller
      */
     public function taskSetStatusAction(Request $request, Task $task = null, $status, EntityManagerInterface $em)
     {
-        
+
         // Si la tâche n'existe pas
         if($task === null) {
             throw $this->createNotFoundException('Tâche non trouvée');
@@ -206,6 +207,59 @@ class TodoController extends Controller
             ]);
     }
 
+  /**
+     * @Route("/task/edit/{id}", requirements={"id": "\d+"}, name="task_edit")
+     *
+     * @Method({"GET", "POST"})
+     */
+         public function taskEditAction($id,Request $request)
+    {
+
+        $task = new Task();
+
+        $task = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AppBundle:Task')
+        ->find($id);
+
+        $form = $this->get('form.factory')->createBuilder(FormType::class, $task)
+        ->add('content', null, [
+            'label' => false,
+        ])
+        ->add('status', ChoiceType::class, array(
+            'choices'  => array(
+                'Done' => 'done',
+                'Undone' => 'undone',)))
+        ->getForm();
+
+            // Si la requête est en POST
+    if ($request->isMethod('POST')) {
+      // On fait le lien Requête <-> Formulaire
+      // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+      $form->handleRequest($request);
+
+      // On vérifie que les valeurs entrées sont correctes
+      // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+      if ($form->isValid()) {
+        // On enregistre notre objet $advert dans la base de données, par exemple
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($task);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Tâche mise à jour.');
+
+        // On redirige vers la page de visualisation de l'annonce nouvellement créée
+        return $this->redirectToRoute('task_show', array('id' => $task->getId()));
+      }
+    }
+
+    // À ce stade, le formulaire n'est pas valide car :
+    // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+    // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
+    return $this->render('todos/editTask.html.twig', array(
+      'form' => $form->createView(),
+    ));
+    }
 
   /**
      * Displays a form to edit an existing liste entity.
@@ -236,6 +290,7 @@ class TodoController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
 
     /**
      * Deletes a liste entity.
@@ -271,7 +326,7 @@ class TodoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('liste_delete', array('id' => $liste->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-}
+
+    }
