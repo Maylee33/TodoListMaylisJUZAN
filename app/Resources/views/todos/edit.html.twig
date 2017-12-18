@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="form-user-edit">
+    <h1 class="form-title">Liste edit</h1>
+	<div class="form-text">
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="login" type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+	{{ form_start(delete_form) }}
+	    <input type="submit" value="Delete" class="delete" onclick="return confirm('Supprimer ?')">
+	{{ form_end(delete_form) }}
+</div>
+</div>
+
+<a class="buttn_new" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+
+
+{% endblock %}

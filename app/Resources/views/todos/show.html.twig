@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>Détail de la tâche</h2>
+
+<dl>
+    <dt>Intitulé :</dt><dd>{{ task.content }}</dd>
+    <dt>Statut :</dt><!-- Task undone --><dd>
+    {% if task.status == 'undone' %}
+    <a href="{{ path('task_set_status', { 'id': task.id, 'status': 'done' }) }}"><i class="fa fa-square-o" aria-hidden="true"></i></a>
+    {% else %}
+    <!-- Task done -->
+    <a href="{{ path('task_set_status', { 'id': task.id, 'status': 'undone' }) }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+    {% endif %}{{ task.status }}</dd>
+</dl>
+
+<li class="list-group-item">
+
+</li>
+
+
+<a class="buttn_view" href="{{ path('liste_index') }}">Retourner à la liste des listes</a>
+
+{% endblock %}

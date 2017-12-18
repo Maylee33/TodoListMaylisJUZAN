@@ -1,0 +1,23 @@
+
+
+{% block body %}
+
+
+<div class="form-user-edit">
+	<h1 class="form-title">Creation of list</h1>
+	<div class="form-text">
+
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="login" type="submit" value="Create" />
+
+
+
+</div></div>
+
+<a class="buttn_new" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+
+
+
+{% endblock %}

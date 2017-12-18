@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a class="bttn_return" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
+<article id="container-blog-show">
+	<hr class="separate">
+
+	<a class="buttn_edit-show" href="{{ path('liste_edit', { 'id': liste.id }) }}" class="btn btn-info">Edit</a>
+	<a class="buttn_edit-show" href="{{ path('liste_delete', { 'id': liste.id }) }}" class="btn btn-info">Delete</a>
+    <h1 class="blog-title">{{liste.title}}</h1>
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<ul class="list-group mb-3">
+    <!-- On utilise la syntaxe for avec (key, value) afin de récupérer le vrai index du tableau tasks -->
+    {% for task in liste.tasks %}
+    <li class="list-group-item">
+        <!-- Task undone -->
+        {% if task.status == 'undone' %}
+        <a href="{{ path('task_set_status', { 'id': task.id, 'status': 'done' }) }}"><i class="fa fa-square-o" aria-hidden="true"></i></a>
+        {% else %}
+        <!-- Task done -->
+        <a href="{{ path('task_set_status', { 'id': task.id, 'status': 'undone' }) }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+        {% endif %}
+        <!-- Title -->
+        <a href="{{ path('task_show', { 'id': task.id }) }}" class="{% if task.status == 'done' %}done{% endif %}">{{ task.content }}</a>
+        <!-- Delete : on utilise un form + méthode POST pour plus de sécurité et de bonne pratique -->
+        <form action="{{ path('task_delete') }}" method="post" class="form_delete">
+            <input type="hidden" name="id" value="{{ task.id }}">
+            <button class="btn btn-link btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+</article>
+
+
+<div class="form-user">
+	<h2 class="form-title">	Poster une tâche 	</h2>
+	<div class="form-text">
+	 {{ form_start(form) }}
+        {{ form_row(form.content) }}
+		{{ form_row(form.status) }}
+        <input class="login" type="submit" value="Create" />
+
+    {{ form_end(form) }}
+</div>
+</div>
+{% endblock %}
