@@ -43,7 +43,6 @@ class TodoController extends Controller
             $liste = new Liste();
         $em = $this->getDoctrine()->getManager();
         $listes = $em->getRepository('AppBundle:Liste')->findAll();
-
         $form = $this->createForm('AppBundle\Form\ListeType', $liste);
         $form->handleRequest($request);
 

@@ -14,7 +14,7 @@
     <a href="{{ path('task_set_status', { 'id': task.id, 'status': 'undone' }) }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
     {% endif %}{{ task.status }}</dd>
 </dl>
-
+<a href="{{ path('task_edit', { 'id': task.id }) }}" class="form_delete"><button class="btn btn-success">Éditer</button></a>
 
 
 
