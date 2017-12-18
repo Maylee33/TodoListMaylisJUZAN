@@ -2,8 +2,6 @@
 
 {% block body %}
 
-
-
 		{% for liste in listes %}
 
             <a class="link-article" href="{{ path('liste_show', { 'id': liste.id }) }}">
@@ -17,10 +15,6 @@
 				<main class="block">
 					<h2 class="blog-title">	{{ liste.title }}</h2>
 					<a class="buttn_view" href="{{ path('liste_show', { 'id': liste.id }) }}">View</a>
-
-			
-
-
 
 
 				</main>

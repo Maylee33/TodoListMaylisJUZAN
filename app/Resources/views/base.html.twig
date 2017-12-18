@@ -16,31 +16,24 @@
       {% block stylesheets %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
       {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Todolist</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/todos/create">Create</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    <div class="container">
+            <div class="row">
+                <div class="col">
+                  <nav class="mb-3">
+                    <ul class="nav nav-tabs">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ path('liste_index') }}">Todolist Maylis JUZAN</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
 
     <div class="container">
     <div class="row">
@@ -49,8 +42,8 @@
     {% for flash_message in app.session.flashbag.get('notice') %}
     <div class="alert alert-success">{{flash_message}}</div>
     {% endfor %}
-
        {% for flash_message in app.session.flashbag.get('error') %}
+
     <div class="alert alert-danger">{{flash_message}}</div>
     {% endfor %}
      {% block body %}{% endblock %}

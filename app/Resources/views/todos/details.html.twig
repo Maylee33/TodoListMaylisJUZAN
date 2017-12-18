@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<a class="bttn_return" href="{{ path('liste_index') }}" class="btn btn-primary">Back to the list</a>
-<article id="container-blog-show">
-	<hr class="separate">
+<h2 class="title_list">{{liste.title}}</h2>
 
-	<a class="buttn_edit-show" href="{{ path('liste_edit', { 'id': liste.id }) }}" class="btn btn-info">Edit</a>
-	<a class="buttn_edit-show" href="{{ path('liste_delete', { 'id': liste.id }) }}" class="btn btn-info">Delete</a>
-    <h1 class="blog-title">{{liste.title}}</h1>
-
+<a class="button" href="{{ path('liste_delete', { 'id': liste.id }) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
+<a class="button" href="{{ path('liste_edit', { 'id': liste.id }) }}" ><button type="button" class="btn btn-info">Éditer </button></a>
+</br>
+<hr>
 {% for label, messages in app.flashes %}
     {% for message in messages %}
         <div class="alert alert-{{ label }}">
@@ -30,29 +28,38 @@
         {% endif %}
         <!-- Title -->
         <a href="{{ path('task_show', { 'id': task.id }) }}" class="{% if task.status == 'done' %}done{% endif %}">{{ task.content }}</a>
+
         <!-- Delete : on utilise un form + méthode POST pour plus de sécurité et de bonne pratique -->
         <form action="{{ path('task_delete') }}" method="post" class="form_delete">
             <input type="hidden" name="id" value="{{ task.id }}">
             <button class="btn btn-link btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </form>
 
-        <a href="{{ path('task_edit', { 'id': task.id }) }}"><i class="fa fa-pencil"></i></a>
-
-    </li>
+        <a href="{{ path('task_edit', { 'id': task.id }) }}" class="form_delete"><button class="btn btn-link btn-sm"><i class="fa fa-pencil"></i></button></a>
+		</li>
     {% endfor %}
-</ul>
+	</ul>
+
+
 </article>
+<a class="bttn_return" href="{{ path('liste_index') }}"><button type="button" class="btn btn-info">Back to the list</button></a>
+<br>
+<hr>
+
+<div class="Formulaire">
+	<h2>	Poster une tâche 	</h2>
 
 
-<div class="form-user">
-	<h2 class="form-title">	Poster une tâche 	</h2>
-	<div class="form-text">
+
+
 	 {{ form_start(form) }}
-        {{ form_row(form.content) }}
-		{{ form_row(form.status) }}
-        <input class="login" type="submit" value="Create" />
+
+
+		<p class="width">{{ form_row(form.content) }}</p>
+		<p class="margin">{{ form_row(form.status) }}</p>
+	    <input class="login" type="submit" value="Create" />
 
     {{ form_end(form) }}
 </div>
-</div>
+
 {% endblock %}

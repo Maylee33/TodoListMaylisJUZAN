@@ -1,0 +1,32 @@
+.form_delete {
+    float: right;
+}
+
+.list-group-item .done {
+    text-decoration: line-through;
+}
+
+.list-group .fa {
+    font-size: 1.5em;
+    vertical-align: bottom;
+}
+
+.title_list {
+	float:left;
+}
+
+.button {
+	float: right;
+	margin: 2px;
+}
+.margin {
+margin-top : 20px;
+}
+
+input {
+	width: 100%;
+}
+
+select {
+	width : 100%;
+}
