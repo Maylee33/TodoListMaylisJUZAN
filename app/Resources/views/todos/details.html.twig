@@ -3,7 +3,6 @@
 {% block body %}
 <h2 class="title_list">{{liste.title}}</h2>
 
-<a class="button" href="{{ path('liste_delete', { 'id': liste.id }) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
 <a class="button" href="{{ path('liste_edit', { 'id': liste.id }) }}" ><button type="button" class="btn btn-info">Éditer </button></a>
 </br>
 <hr>
